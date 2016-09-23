@@ -9,13 +9,18 @@ import { Cordova, Plugin } from './plugin';
  * @usage
  * ```typescript
  * import { LocalNotifications } from 'ionic-native';
+ * import { Platform } from 'ionic-angular';
  *
+ * 
+ *  constructor(platform: Platform) {
+ *    this.platform = platform;
+ *  }
  *
  * // Schedule a single notification
  * LocalNotifications.schedule({
  *   id: 1,
  *   text: 'Single Notification',
- *   sound: isAndroid? 'file://sound.mp3': 'file://beep.caf',
+ *   sound: this.platform.is('ios')? 'file://sound.mp3': 'file://beep.caf',
  *   data: { secret: key }
  * });
  *
@@ -24,7 +29,7 @@ import { Cordova, Plugin } from './plugin';
  * LocalNotifications.schedule([{
  *    id: 1,
  *    text: 'Multi Notification 1',
- *    sound: isAndroid ? 'file://sound.mp3': 'file://beep.caf',
+ *    sound: this.platform.is('ios') ? 'file://sound.mp3': 'file://beep.caf',
  *    data: { secret:key }
  *   },{
  *    id: 2,
